@@ -1,0 +1,245 @@
+{
+  "dependencies": {
+    "clock": "sys-clock:",
+    "http": "http:",
+    "endpoint": "sys-process:endpointUrl"
+  },
+  "expressions": {
+    "documentUrl": {
+      "description": "Document",
+      "type": "text",
+      "searchIn": "https://docs.google.com",
+      "regex": "/document/d/([a-zA-Z0-9-_]+)"
+    }
+  },
+  "schema": {
+    "types": [
+      {
+        "name": "Root",
+        "fields": [
+          {
+            "name": "documents",
+            "type": "DocumentCollection"
+          },
+          {
+            "name": "parse",
+            "type": "List",
+            "ofType": {
+              "type": "Ref",
+              "ofType": "Document"
+            },
+            "hints": {
+              "hidden": true
+            },
+            "params": [
+              {
+                "name": "name",
+                "type": "String"
+              },
+              {
+                "name": "value",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "String"
+          }
+        ],
+        "actions": [
+          {
+            "name": "configure",
+            "type": "Void",
+            "params": [
+              {
+                "name": "clientId",
+                "type": "String"
+              },
+              {
+                "name": "clientSecret",
+                "type": "String"
+              },
+              {
+                "name": "token",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "name": "checkStatus",
+            "type": "Boolean"
+          },
+          {
+            "name": "endpoint",
+            "type": "String",
+            "hints": {
+              "hidden": true
+            },
+            "params": [
+              {
+                "name": "method",
+                "type": "String"
+              },
+              {
+                "name": "body",
+                "type": "String"
+              },
+              {
+                "name": "path",
+                "type": "String"
+              },
+              { "name": "query", "type": "String" },
+              { "name": "headers", "type": "String" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DocumentCollection",
+        "actions": [
+          {
+            "name": "create",
+            "type": "Ref",
+            "ofType": "Document",
+            "params": [
+              {
+                "name": "body",
+                "type": "String",
+                "description": "The document body as a JSON string."
+              },
+              {
+                "name": "title",
+                "type": "String",
+                "description": "The document's title."
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "name": "one",
+            "type": "Document",
+            "params": [
+              {
+                "name": "id",
+                "type": "String",
+                "description": "The document ID. Found in the URL after the 'document/d/' part"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Document",
+        "actions": [
+          {
+            "name": "batchUpdate",
+            "type": "String",
+            "params": [
+              {
+                "name": "requests",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "name": "replaceAllText",
+            "type": "Int",
+            "params": [
+              {
+                "name": "text",
+                "type": "String"
+              },
+              {
+                "name": "replaceText",
+                "type": "String"
+              },
+              {
+                "name": "matchCase",
+                "type": "Boolean"
+              }
+            ]
+          },
+          {
+            "name": "insertText",
+            "type": "Void",
+            "params": [
+              {
+                "name": "text",
+                "type": "String",
+                "description": "The text to be inserted"
+              },
+              {
+                "name": "segmentId",
+                "type": "String",
+                "description": "Optional. The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body."
+              },
+              {
+                "name": "index",
+                "type": "Int",
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+              }
+            ]
+          },
+          {
+            "name": "insertBullet",
+            "type": "Void",
+            "params": [
+              {
+                "name": "text",
+                "type": "String",
+                "description": "The text to be inserted"
+              },
+              {
+                "name": "index",
+                "type": "Int",
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+              },
+              {
+                "name": "bulletPreset",
+                "type": "String",
+                "description": "Optional. Defaults to BULLET_DISC_CIRCLE_SQUARE. See valid values at https://developers.google.com/docs/api/reference/rest/v1/documents/request#BulletGlyphPreset"
+              }
+            ]
+          },
+          {
+            "name": "insertLink",
+            "type": "Void",
+            "params": [
+              {
+                "name": "text",
+                "type": "String",
+                "description": "The text to be inserted"
+              },
+              {
+                "name": "index",
+                "type": "Int",
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+              },
+              {
+                "name": "url",
+                "type": "String",
+                "description": "The URL to link to"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "name": "revisionId",
+            "type": "String"
+          },
+          {
+            "name": "body",
+            "type": "String"
+          },
+          {
+            "name": "markdown",
+            "type": "String"
+          }
+        ]
+      }
+    ]
+  }
+}
