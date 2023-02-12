@@ -67,12 +67,12 @@ function html(body: string) {
   return `
   <!DOCTYPE html>
   <head>
-    <title>Google Calendar Driver for Membrane</title>
+    <title>Google Docs Driver for Membrane</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap-reboot.css">
   </head>
   <body style="padding: 0px 15px">
     <p>
-      <h1>Google Calendar Driver for Membrane</h1>
+      <h1>Google Docs Driver for Membrane</h1>
       ${body}
     </p>
   </body>
