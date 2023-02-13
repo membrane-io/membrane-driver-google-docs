@@ -45,6 +45,10 @@
           {
             "name": "status",
             "type": "String"
+          },
+          {
+            "name": "authId",
+            "type": "String"
           }
         ],
         "actions": [
@@ -58,10 +62,6 @@
               },
               {
                 "name": "clientSecret",
-                "type": "String"
-              },
-              {
-                "name": "token",
                 "type": "String"
               }
             ]
@@ -89,8 +89,14 @@
                 "name": "path",
                 "type": "String"
               },
-              { "name": "query", "type": "String" },
-              { "name": "headers", "type": "String" }
+              {
+                "name": "query",
+                "type": "String"
+              },
+              {
+                "name": "headers",
+                "type": "String"
+              }
             ]
           }
         ]
