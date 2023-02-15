@@ -29,7 +29,8 @@ export async function api(
 
     req = state.accessToken.sign({ req });
   }
-  return await fetch(req.url, { ...req, http: httpNode() });
+  
+  return await fetch(req.req.url, { ...req, http: httpNode() });
 }
 
 export function usingUserApiKey() {
