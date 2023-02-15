@@ -133,8 +133,94 @@
                 "description": "The document ID. Found in the URL after the 'document/d/' part"
               }
             ]
+          },
+          {
+            "name": "page",
+            "type": "DocumentPage",
+            "params": [
+              {
+                "name": "q",
+                "description": "Optional. A query string for searching for documents.",
+                "type": "String"
+              },
+              {
+                "name": "privateExtendedProperty",
+                "type": "String"
+              },
+              {
+                "name": "corpora",
+                "description": "Optional. The list of corpora to search. The default is 'user'.",
+                "type": "String"
+              },
+              {
+                "name": "teamDriveId",
+                "type": "String"
+              },
+              {
+                "name": "driveId",
+                "description": "Optional. The ID of the shared drive to search.",
+                "type": "String"
+              },
+              {
+                "name": "orderBy",
+                "description": "Optional. The order in which to sort the results. The default is 'modifiedTime desc'.",
+                "type": "String"
+              },
+              {
+                "name": "spaces",
+                "description": "Optional. The list of spaces to search. The default is 'drive'.",
+                "type": "String"
+              },
+              {
+                "name": "pageSize",
+                "type": "Int",
+                "description": "Optional. The maximum number of documents to return. The default is 100. The maximum is 1000."
+              },
+              {
+                "name": "pageToken",
+                "type": "String",
+                "description": "Optional. The page token as returned by the previous call to this method."
+              },
+              {
+                "name": "supportsAllDrives",
+                "type": "Boolean"
+              },
+              {
+                "name": "supportsTeamDrives",
+                "type": "Boolean"
+              },
+              {
+                "name": "includeItemsFromAllDrives",
+                "type": "Boolean"
+              },
+              {
+                "name": "includeLabels",
+                "type": "String"
+              },
+              {
+                "name": "includePermissionsForView",
+                "type": "String"
+              }
+            ]
           }
         ]
+      },
+      {
+        "name": "DocumentPage",
+        "fields": [
+          {
+            "name": "items",
+            "type": "List",
+            "ofType": "Document"
+          },
+          {
+            "name": "next",
+            "type": "Ref",
+            "ofType": "DocumentPage"
+          }
+        ],
+        "actions": [],
+        "events": []
       },
       {
         "name": "Document",
@@ -243,6 +329,13 @@
           {
             "name": "markdown",
             "type": "String"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "hints": {
+              "primary": true
+            }
           }
         ]
       }

@@ -41,7 +41,7 @@ export async function endpoint({ args: { path, query, headers, body } }) {
     case "/auth":
     case "/auth/":
     case "/auth/callback":
-      return;
+      return util.endpoint({ args: { path, query, headers, body }})
     default:
       return JSON.stringify({ status: 404, body: "Not found" });
   }
@@ -86,13 +86,7 @@ const shouldFetch = (info: ResolverInfo, simpleFields: string[]) =>
 export const DocumentCollection = {
   async create({ args: { title, body } }) {
     const doc = { title, body: body && JSON.parse(body) };
-    const res = await api(
-      "POST",
-      "docs.googleapis.com",
-      `v1/documents`,
-      {},
-      JSON.stringify(doc)
-    );
+    const res = await api("POST", "docs.googleapis.com", `v1/documents`, {}, JSON.stringify(doc));
     if (res.status >= 300) {
       throw new Error(`Error creating document: ${await res.text()}`);
     }
@@ -106,12 +100,22 @@ export const DocumentCollection = {
     }
     return await apiGetDocument(id);
   },
-  // TODO: list documents
-  // async page({ args, context }) {
-  // },
+  async page({ self, args }) {
+    const { q: query, ...rest } = args;
+    const mimeType = 'application/vnd.google-apps.document';
+    const queryStr = query ? `and ${query}` : "";
+    const q = `mimeType='${mimeType}' ${queryStr}`;
+    const res = await api("GET", "www.googleapis.com", "/drive/v3/files", { ...rest, q });
+    const json = await res.json();
+    return { items: json.files, next: self.page({ ...rest, pageToken: json.nextPageToken }) };
+  }
 };
 
 export const Document = {
+  gref: ({ obj }) => {
+    return root.documents.one({ id: obj?.id });
+  },
+  name: ({ obj }) => (obj?.title ? obj.title : obj.name),
   body: ({ obj }) => (obj?.body ? JSON.stringify(obj.body) : null),
   markdown: ({ obj }) => {
     return jsonToMarkdown(obj);
