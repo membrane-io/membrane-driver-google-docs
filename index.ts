@@ -113,7 +113,7 @@ export const DocumentCollection = {
 
 export const Document = {
   gref: ({ obj }) => {
-    return root.documents.one({ id: obj?.id });
+    return root.documents.one({ id: obj!.id });
   },
   name: ({ obj }) => (obj?.title ? obj.title : obj.name),
   body: ({ obj }) => (obj?.body ? JSON.stringify(obj.body) : null),
