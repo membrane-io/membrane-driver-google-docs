@@ -105,7 +105,7 @@ export const DocumentCollection = {
     const mimeType = 'application/vnd.google-apps.document';
     const queryStr = query ? `and ${query}` : "";
     const q = `mimeType='${mimeType}' ${queryStr}`;
-    const res = await api("GET", "www.googleapis.com", "/drive/v3/files", { ...rest, q });
+    const res = await api("GET", "www.googleapis.com", "drive/v3/files", { ...rest, q });
     const json = await res.json();
     return { items: json.files, next: self.page({ ...rest, pageToken: json.nextPageToken }) };
   }
