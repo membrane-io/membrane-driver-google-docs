@@ -20,20 +20,20 @@ export async function api(
     query && Object.keys(query).length ? `?${new URLSearchParams(query)}` : "";
 
   // The HTTP node to use. Either Membrane's authenticated HTTP node or the regular one we have an access token.
-  let req = { method, url: `https://${domain}/${path}${querystr}`, body };
+  let req = { method, url: `https://${domain}/${path}${querystr}`, body, headers: {}};
   if (state.accessToken) {
     if (state.accessToken.expired()) {
       console.log("Refreshing access token...");
       state.accessToken = await state.accessToken.refresh();
     }
-
-    req = state.accessToken.sign({ req });
+    // Sign the request with the access token
+    req.headers = state.accessToken.sign({ req }).headers;
   }
   
-  return await fetch(req.req.url, { ...req, http: httpNode() });
+  return await fetch(req.url, { ...req, http: httpNode() });
 }
 
-export function usingUserApiKey() {
+export function usingUserApiKey() {›
   return state.clientId && state.clientSecret;
 }
 
