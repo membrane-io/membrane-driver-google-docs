@@ -27,13 +27,13 @@ export async function api(
       state.accessToken = await state.accessToken.refresh();
     }
     // Sign the request with the access token
-    req.headers = state.accessToken.sign({ req }).headers;
+    req = state.accessToken.sign(req)
   }
   
   return await fetch(req.url, { ...req, http: httpNode() });
 }
 
-export function usingUserApiKey() {›
+export function usingUserApiKey() {
   return state.clientId && state.clientSecret;
 }
 
