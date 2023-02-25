@@ -20,17 +20,17 @@ export async function api(
     query && Object.keys(query).length ? `?${new URLSearchParams(query)}` : "";
 
   // The HTTP node to use. Either Membrane's authenticated HTTP node or the regular one we have an access token.
-  let req = { method, url: `https://${domain}/${path}${querystr}`, body };
+  let req = { method, url: `https://${domain}/${path}${querystr}`, body, headers: {}};
   if (state.accessToken) {
     if (state.accessToken.expired()) {
       console.log("Refreshing access token...");
       state.accessToken = await state.accessToken.refresh();
     }
-
-    req = state.accessToken.sign({ req });
+    // Sign the request with the access token
+    req = state.accessToken.sign(req)
   }
   
-  return await fetch(req.req.url, { ...req, http: httpNode() });
+  return await fetch(req.url, { ...req, http: httpNode() });
 }
 
 export function usingUserApiKey() {
@@ -110,7 +110,7 @@ function html(body: string) {
   <!DOCTYPE html>
   <head>
     <meta charset="utf-8" />
-    <title>Google Calendar Driver for Membrane</title>
+    <title>Google Docs Driver for Membrane</title>
     <link rel="stylesheet" href="https://www.membrane.io/light.css"></script>
   </head>
   <body>
@@ -127,8 +127,8 @@ function html(body: string) {
 function indexHtml(membraneAuthUrl: string, customAuthUrl: string) {
   return html(`
   <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-bottom: 18px;">
-    <img style="width: 40px; height: 40px; margin-right: 10px;" src="https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_12_2x.png"/>
-    <h1>Google Calendar Driver for Membrane</h1>
+    <img style="width: 40px; height: 40px; margin-right: 10px;" src="https://lh3.googleusercontent.com/1DECuhPQ1y2ppuL6tdEqNSuObIm_PW64w0mNhm3KGafi40acOJkc4nvsZnThoDKTH8gWyxAnipJmvCiszX8R6UAUu1UyXPfF13d7"/>
+    <h1>Google Docs Driver for Membrane</h1>
   </div>
   <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
     <section style="flex: 1; justify-content: space-between; align-items: center;">
@@ -148,7 +148,7 @@ function indexHtml(membraneAuthUrl: string, customAuthUrl: string) {
               ? "<p>✅ User signed-in</p>"
               : "<p>❌ User <b>not signed-in</b></p>") +
             `<p><a class="button" href=${customAuthUrl}/>Sign in with Google</a></p>`
-          : "<p>Client ID and Secret <b>not configured</b>.</p> <p>Invoke <code>:configure</code> with your Google Calendar API Key and Secret to authenticate</p>"
+          : "<p>Client ID and Secret <b>not configured</b>.</p> <p>Invoke <code>:configure</code> with your Google Docs API Key and Secret to authenticate</p>"
       }
     </section>
   </div>
