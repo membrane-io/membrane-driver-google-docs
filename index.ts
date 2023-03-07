@@ -35,7 +35,7 @@ export const Root = {
 export async function endpoint({ args: { path, query, headers, body } }) {
   const link = await nodes.http
     .authenticated({ api: "google-docs", authId: root.authId })
-    .createLink.$invoke();
+    .createLink();
   switch (path) {
     case "/":
     case "/auth":
@@ -147,7 +147,7 @@ export const Document = {
     await applyUpdate(self, req);
   },
   insertBullet: async ({ args: { text, index, bulletPreset }, self }) => {
-    await self.insertText({ text: "\n" + text, index }).$invoke();
+    await self.insertText({ text: "\n" + text, index });
 
     const { id } = self.$argsAt(root.documents.one);
     let startIndex: number;
@@ -169,7 +169,7 @@ export const Document = {
     await applyUpdate(self, req);
   },
   insertLink: async ({ args: { text, index, url }, self }) => {
-    await self.insertText({ text, index }).$invoke();
+    await self.insertText({ text, index });
 
     const { id } = self.$argsAt(root.documents.one);
     let endIndex: number;
