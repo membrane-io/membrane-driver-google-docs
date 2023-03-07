@@ -45,7 +45,7 @@ export async function authStatus() {
       return `Client ID/Secret configured. [Sign In](${await endpointUrl()}).`;
     }
   } else {
-    if (await authenticatedNode().hasAuthenticated.$get()) {
+    if (await authenticatedNode().hasAuthenticated) {
       return `Ready`;
     } else {
       return `[Sign In](${await endpointUrl()})`;
@@ -72,7 +72,7 @@ function authenticatedNode(): NodeGref<http.Authenticated> {
 export async function endpoint({ args: { path, query, headers, body } }) {
   const link = await nodes.http
     .authenticated({ api: "google-docs", authId: root.authId })
-    .createLink.$invoke();
+    .createLink();
   switch (path) {
     case "/": {
       return html(indexHtml(link, "auth"));
@@ -179,7 +179,7 @@ export async function createAuthClient() {
 // Cached endpoint URL since it's immutable
 export async function endpointUrl() {
   if (!state.endpointUrl) {
-    state.endpointUrl = await nodes.process.endpointUrl.$get();
+    state.endpointUrl = await nodes.process.endpointUrl;
   }
   return state.endpointUrl;
 }
