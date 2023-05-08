@@ -149,7 +149,7 @@
             "params": [
               {
                 "name": "q",
-                "description": "Optional. A query string for searching for documents.",
+                "description": "Optional. A query string for searching for documents. E.g: name contains 'invoice'",
                 "type": "String",
                 "optional": true
               },

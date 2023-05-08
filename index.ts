@@ -37,7 +37,7 @@ export const Tests = {
   testCreateDocument: async () => {
     const title: string = `Test Document`;
     const doc = await root.documents.create({
-      title
+      title,
     });
     const name = await doc.name.$get();
     return name === title;
@@ -45,8 +45,8 @@ export const Tests = {
   testGetAllDocuments: async () => {
     const items = await root.documents.page.items.$query(`{ name }`);
     return Array.isArray(items);
-  }
-}
+  },
+};
 
 export async function endpoint({ args: { path, query, headers, body } }) {
   const link = await nodes.http
@@ -57,7 +57,7 @@ export async function endpoint({ args: { path, query, headers, body } }) {
     case "/auth":
     case "/auth/":
     case "/auth/callback":
-      return util.endpoint({ args: { path, query, headers, body }})
+      return util.endpoint({ args: { path, query, headers, body } });
     default:
       return JSON.stringify({ status: 404, body: "Not found" });
   }
@@ -102,7 +102,13 @@ const shouldFetch = (info: ResolverInfo, simpleFields: string[]) =>
 export const DocumentCollection = {
   async create({ args: { title, body } }) {
     const doc = { title, body };
-    const res = await api("POST", "docs.googleapis.com", `v1/documents`, {}, JSON.stringify(doc));
+    const res = await api(
+      "POST",
+      "docs.googleapis.com",
+      `v1/documents`,
+      {},
+      JSON.stringify(doc)
+    );
     if (res.status >= 300) {
       throw new Error(`Error creating document: ${await res.text()}`);
     }
@@ -118,13 +124,19 @@ export const DocumentCollection = {
   },
   async page({ self, args }) {
     const { q: query, ...rest } = args;
-    const mimeType = 'application/vnd.google-apps.document';
+    const mimeType = "application/vnd.google-apps.document";
     const queryStr = query ? `and ${query}` : "";
     const q = `mimeType='${mimeType}' ${queryStr}`;
-    const res = await api("GET", "www.googleapis.com", "drive/v3/files", { ...rest, q });
+    const res = await api("GET", "www.googleapis.com", "drive/v3/files", {
+      ...rest,
+      q,
+    });
     const json = await res.json();
-    return { items: json.files, next: self.page({ ...rest, pageToken: json.nextPageToken }) };
-  }
+    return {
+      items: json.files,
+      next: self.page({ ...rest, pageToken: json.nextPageToken }),
+    };
+  },
 };
 
 export const Document = {
@@ -218,6 +230,13 @@ async function applyUpdate(self: any, request: object): Promise<any> {
     {},
     JSON.stringify(requests)
   );
+
+  if (res.status === 429) {
+    // TODO: proper retry logic using exponential backoff (RTFM)
+    console.log("Got rate-limited. Retrying in 5 seconds...");
+    await sleep(5);
+    return await applyUpdate(self, request);
+  }
   if (res.status !== 200) {
     throw new Error(`Error applying update: ${await res.text()}`);
   }
