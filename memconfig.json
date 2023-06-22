@@ -142,65 +142,79 @@
               {
                 "name": "q",
                 "description": "Optional. A query string for searching for documents.",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "privateExtendedProperty",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "corpora",
                 "description": "Optional. The list of corpora to search. The default is 'user'.",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "teamDriveId",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "driveId",
                 "description": "Optional. The ID of the shared drive to search.",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "orderBy",
                 "description": "Optional. The order in which to sort the results. The default is 'modifiedTime desc'.",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "spaces",
                 "description": "Optional. The list of spaces to search. The default is 'drive'.",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "pageSize",
                 "type": "Int",
-                "description": "Optional. The maximum number of documents to return. The default is 100. The maximum is 1000."
+                "description": "Optional. The maximum number of documents to return. The default is 100. The maximum is 1000.",
+                "optional": true
               },
               {
                 "name": "pageToken",
                 "type": "String",
-                "description": "Optional. The page token as returned by the previous call to this method."
+                "description": "Optional. The page token as returned by the previous call to this method.",
+                "optional": true
               },
               {
                 "name": "supportsAllDrives",
-                "type": "Boolean"
+                "type": "Boolean",
+                "optional": true
               },
               {
                 "name": "supportsTeamDrives",
-                "type": "Boolean"
+                "type": "Boolean",
+                "optional": true
               },
               {
                 "name": "includeItemsFromAllDrives",
-                "type": "Boolean"
+                "type": "Boolean",
+                "optional": true
               },
               {
                 "name": "includeLabels",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "includePermissionsForView",
-                "type": "String"
+                "type": "String",
+                "optional": true
               }
             ]
           }
@@ -220,8 +234,12 @@
             "ofType": "DocumentPage"
           }
         ],
-        "actions": [],
-        "events": []
+        "actions": [
+          
+        ],
+        "events": [
+          
+        ]
       },
       {
         "name": "Document",
@@ -261,17 +279,20 @@
               {
                 "name": "text",
                 "type": "String",
-                "description": "The text to be inserted"
+                "description": "The text to be inserted",
+                "optional": true
               },
               {
                 "name": "segmentId",
                 "type": "String",
-                "description": "Optional. The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body."
+                "description": "Optional. The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.",
+                "optional": true
               },
               {
                 "name": "index",
                 "type": "Int",
-                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId.",
+                "optional": true
               }
             ]
           },
@@ -282,17 +303,20 @@
               {
                 "name": "text",
                 "type": "String",
-                "description": "The text to be inserted"
+                "description": "The text to be inserted",
+                "optional": true
               },
               {
                 "name": "index",
                 "type": "Int",
-                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId.",
+                "optional": true
               },
               {
                 "name": "bulletPreset",
                 "type": "String",
-                "description": "Optional. Defaults to BULLET_DISC_CIRCLE_SQUARE. See valid values at https://developers.google.com/docs/api/reference/rest/v1/documents/request#BulletGlyphPreset"
+                "description": "Optional. Defaults to BULLET_DISC_CIRCLE_SQUARE. See valid values at https://developers.google.com/docs/api/reference/rest/v1/documents/request#BulletGlyphPreset",
+                "optional": true
               }
             ]
           },
@@ -303,17 +327,20 @@
               {
                 "name": "text",
                 "type": "String",
-                "description": "The text to be inserted"
+                "description": "The text to be inserted",
+                "optional": true
               },
               {
                 "name": "index",
                 "type": "Int",
-                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId."
+                "description": "Optional. The zero-based index, in UTF-16 code units. The index is relative to the beginning of the segment specified by segmentId.",
+                "optional": true
               },
               {
                 "name": "url",
                 "type": "String",
-                "description": "The URL to link to"
+                "description": "The URL to link to",
+                "optional": true
               }
             ]
           }
