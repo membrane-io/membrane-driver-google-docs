@@ -84,7 +84,8 @@
               },
               {
                 "name": "body",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "path",
@@ -92,7 +93,8 @@
               },
               {
                 "name": "query",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "headers",
@@ -234,12 +236,8 @@
             "ofType": "DocumentPage"
           }
         ],
-        "actions": [
-          
-        ],
-        "events": [
-          
-        ]
+        "actions": [],
+        "events": []
       },
       {
         "name": "Document",
@@ -264,11 +262,13 @@
               },
               {
                 "name": "replaceText",
-                "type": "String"
+                "type": "String",
+                "optional": true
               },
               {
                 "name": "matchCase",
-                "type": "Boolean"
+                "type": "Boolean",
+                "optional": true
               }
             ]
           },
@@ -280,7 +280,7 @@
                 "name": "text",
                 "type": "String",
                 "description": "The text to be inserted",
-                "optional": true
+                "optional": false
               },
               {
                 "name": "segmentId",
@@ -304,7 +304,7 @@
                 "name": "text",
                 "type": "String",
                 "description": "The text to be inserted",
-                "optional": true
+                "optional": false
               },
               {
                 "name": "index",
@@ -328,7 +328,7 @@
                 "name": "text",
                 "type": "String",
                 "description": "The text to be inserted",
-                "optional": true
+                "optional": false
               },
               {
                 "name": "index",
