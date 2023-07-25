@@ -118,7 +118,7 @@
             "params": [
               {
                 "name": "body",
-                "type": "String",
+                "type": "Json",
                 "description": "The document body as a JSON string.",
                 "optional": true
               },
