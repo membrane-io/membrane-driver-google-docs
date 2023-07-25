@@ -30,7 +30,23 @@ export const Root = {
     });
     return res.status === 200;
   },
+  tests: () => ({}),
 };
+
+export const Tests = {
+  testCreateDocument: async () => {
+    const title: string = `Test Document`;
+    const doc = await root.documents.create({
+      title
+    });
+    const name = await doc.name.$get();
+    return name === title;
+  },
+  testGetAllDocuments: async () => {
+    const items = await root.documents.page.items.$query(`{ name }`);
+    return Array.isArray(items) && (items.length === 0 || items.length > 0);
+  }
+}
 
 export async function endpoint({ args: { path, query, headers, body } }) {
   const link = await nodes.http
