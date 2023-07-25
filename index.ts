@@ -44,7 +44,7 @@ export const Tests = {
   },
   testGetAllDocuments: async () => {
     const items = await root.documents.page.items.$query(`{ name }`);
-    return Array.isArray(items) && (items.length === 0 || items.length > 0);
+    return Array.isArray(items);
   }
 }
 
