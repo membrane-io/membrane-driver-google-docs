@@ -101,7 +101,7 @@ const shouldFetch = (info: ResolverInfo, simpleFields: string[]) =>
 
 export const DocumentCollection = {
   async create({ args: { title, body } }) {
-    const doc = { title, body: body && body };
+    const doc = { title, body };
     const res = await api("POST", "docs.googleapis.com", `v1/documents`, {}, JSON.stringify(doc));
     if (res.status >= 300) {
       throw new Error(`Error creating document: ${await res.text()}`);
