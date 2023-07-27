@@ -30,7 +30,23 @@ export const Root = {
     });
     return res.status === 200;
   },
+  tests: () => ({}),
 };
+
+export const Tests = {
+  testCreateDocument: async () => {
+    const title: string = `Test Document`;
+    const doc = await root.documents.create({
+      title
+    });
+    const name = await doc.name.$get();
+    return name === title;
+  },
+  testGetAllDocuments: async () => {
+    const items = await root.documents.page.items.$query(`{ name }`);
+    return Array.isArray(items);
+  }
+}
 
 export async function endpoint({ args: { path, query, headers, body } }) {
   const link = await nodes.http
@@ -85,7 +101,7 @@ const shouldFetch = (info: ResolverInfo, simpleFields: string[]) =>
 
 export const DocumentCollection = {
   async create({ args: { title, body } }) {
-    const doc = { title, body: body && JSON.parse(body) };
+    const doc = { title, body };
     const res = await api("POST", "docs.googleapis.com", `v1/documents`, {}, JSON.stringify(doc));
     if (res.status >= 300) {
       throw new Error(`Error creating document: ${await res.text()}`);

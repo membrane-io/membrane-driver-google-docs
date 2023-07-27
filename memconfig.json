@@ -50,6 +50,10 @@
           {
             "name": "authId",
             "type": "String"
+          },
+          {
+            "name": "tests",
+            "type": "Tests"
           }
         ],
         "actions": [
@@ -114,13 +118,15 @@
             "params": [
               {
                 "name": "body",
-                "type": "String",
-                "description": "The document body as a JSON string."
+                "type": "Json",
+                "description": "The document body as a JSON string.",
+                "optional": true
               },
               {
                 "name": "title",
                 "type": "String",
-                "description": "The document's title."
+                "description": "The document's title.",
+                "optional": false
               }
             ]
           }
@@ -364,6 +370,19 @@
             "hints": {
               "primary": true
             }
+          }
+        ]
+      },
+      {
+        "name": "Tests",
+        "actions": [
+          {
+            "name": "testCreateDocument",
+            "type": "Boolean"
+          },
+          {
+            "name": "testGetAllDocuments",
+            "type": "Boolean"
           }
         ]
       }
