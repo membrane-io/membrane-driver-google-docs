@@ -365,6 +365,10 @@
             "type": "String"
           },
           {
+            "name": "url",
+            "type": "String"
+          },
+          {
             "name": "name",
             "type": "String",
             "hints": {

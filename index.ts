@@ -133,6 +133,7 @@ export const Document = {
   },
   name: ({ obj }) => (obj?.title ? obj.title : obj.name),
   body: ({ obj }) => (obj?.body ? JSON.stringify(obj.body) : null),
+  url: ({ obj }) => `https://docs.google.com/document/d/${obj.documentId}`,
   markdown: ({ obj }) => {
     return jsonToMarkdown(obj);
   },
