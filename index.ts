@@ -9,7 +9,7 @@ export const Root = {
   async status() {
     return await util.authStatus();
   },
-  parse({ args: { name, value } }) {
+  parse({ name, value }) {
     switch (name) {
       case "documentUrl": {
         const id = value.match(
@@ -48,7 +48,7 @@ export const Tests = {
   },
 };
 
-export async function endpoint({ args: { path, query, headers, body } }) {
+export async function endpoint({ path, query, headers, body }) {
   const link = await nodes.http
     .authenticated({ api: "google-docs", authId: root.authId })
     .createLink();
@@ -63,7 +63,7 @@ export async function endpoint({ args: { path, query, headers, body } }) {
   }
 }
 
-export async function configure({ args: { clientId, clientSecret } }) {
+export async function configure({ clientId, clientSecret }) {
   state.clientId = clientId;
   state.clientSecret = clientSecret;
   await createAuthClient();
@@ -100,7 +100,7 @@ const shouldFetch = (info: ResolverInfo, simpleFields: string[]) =>
     .some(({ name: { value } }) => !simpleFields.includes(value));
 
 export const DocumentCollection = {
-  async create({ args: { title, body } }) {
+  async create({ title, body }) {
     const doc = { title, body };
     const res = await api(
       "POST",
@@ -115,14 +115,14 @@ export const DocumentCollection = {
     const json = await res.json();
     return root.documents.one({ id: json.documentId });
   },
-  async one({ args: { id }, context, info }) {
+  async one({ id }, { context, info }) {
     context.documentId = id;
     if (!shouldFetch(info, ["id"])) {
       return { id };
     }
     return await apiGetDocument(id);
   },
-  async page({ self, args }) {
+  async page(args, { self }) {
     const { q: query, ...rest } = args;
     const mimeType = "application/vnd.google-apps.document";
     const queryStr = query ? `and ${query}` : "";
@@ -140,15 +140,15 @@ export const DocumentCollection = {
 };
 
 export const Document = {
-  gref: ({ obj }) => {
+  gref: (_, { obj }) => {
     return root.documents.one({ id: obj!.id });
   },
-  name: ({ obj }) => (obj?.title ? obj.title : obj.name),
-  body: ({ obj }) => (obj?.body ? JSON.stringify(obj.body) : null),
-  markdown: ({ obj }) => {
+  name: (_, { obj }) => (obj?.title ? obj.title : obj.name),
+  body: (_, { obj }) => (obj?.body ? JSON.stringify(obj.body) : null),
+  markdown: (_, { obj }) => {
     return jsonToMarkdown(obj);
   },
-  batchUpdate: async ({ args: { requests }, self }) => {
+  batchUpdate: async ({ requests }, { self }) => {
     const { id } = self.$argsAt(root.documents.one);
     const res = await api(
       "POST",
@@ -159,13 +159,13 @@ export const Document = {
     );
     return await res.json();
   },
-  replaceAllText: async ({ args: { text, replaceText, matchCase }, self }) => {
+  replaceAllText: async ({ text, replaceText, matchCase }, { self }) => {
     const res = await applyUpdate(self, {
       replaceAllText: { containsText: { text, matchCase }, replaceText },
     });
     return res?.replies?.[0]?.replaceAllText?.occurrencesChanged ?? 0;
   },
-  insertText: async ({ args: { text, segmentId, index }, self }) => {
+  insertText: async ({ text, segmentId, index }, { self }) => {
     const req: any = { insertText: { text } };
     if (index != null) {
       req.insertText.location = { segmentId: segmentId || "", index };
@@ -174,7 +174,7 @@ export const Document = {
     }
     await applyUpdate(self, req);
   },
-  insertBullet: async ({ args: { text, index, bulletPreset }, self }) => {
+  insertBullet: async ({ text, index, bulletPreset }, { self }) => {
     await self.insertText({ text: "\n" + text, index });
 
     const { id } = self.$argsAt(root.documents.one);
@@ -196,7 +196,7 @@ export const Document = {
     };
     await applyUpdate(self, req);
   },
-  insertLink: async ({ args: { text, index, url }, self }) => {
+  insertLink: async ({ text, index, url }, { self }) => {
     await self.insertText({ text, index });
 
     const { id } = self.$argsAt(root.documents.one);

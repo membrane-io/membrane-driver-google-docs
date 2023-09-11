@@ -73,7 +73,7 @@ function authenticatedNode(): http.Authenticated {
   });
 }
 
-export async function endpoint({ args: { path, query, headers, body } }) {
+export async function endpoint({ path, query, headers, body }) {
   const link = await nodes.http
     .authenticated({ api: "google-docs", authId: root.authId })
     .createLink();
