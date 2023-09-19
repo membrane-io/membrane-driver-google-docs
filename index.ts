@@ -57,7 +57,7 @@ export async function endpoint({ path, query, headers, body }) {
     case "/auth":
     case "/auth/":
     case "/auth/callback":
-      return util.endpoint({ args: { path, query, headers, body } });
+      return util.endpoint({ path, query, headers, body });
     default:
       return JSON.stringify({ status: 404, body: "Not found" });
   }
