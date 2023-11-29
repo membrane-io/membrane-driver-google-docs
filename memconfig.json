@@ -58,7 +58,7 @@
           {
             "name": "tests",
             "type": "Tests",
-            "description": "Google Docs driver test suite."
+            "description": "Test suite for verifying Google Docs driver functionality."
           }
         ],
         "actions": [
