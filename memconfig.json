@@ -36,7 +36,8 @@
             "params": [
               {
                 "name": "name",
-                "type": "String"
+                "type": "String",
+                "description": "The name of the document to parse."
               },
               {
                 "name": "value",
