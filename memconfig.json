@@ -238,7 +238,8 @@
           {
             "name": "items",
             "type": "List",
-            "ofType": "Document"
+            "ofType": "Document",
+            "description": "List of documents on the current page."
           },
           {
             "name": "next",
