@@ -234,7 +234,8 @@
               {
                 "name": "includePermissionsForView",
                 "type": "String",
-                "optional": true
+                "optional": true,
+                "description": "Permissions to include for each document in the view."
               }
             ],
             "description": "Retrieves a paginated list of Google Docs based on search criteria."
