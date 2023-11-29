@@ -48,7 +48,7 @@
           {
             "name": "status",
             "type": "String",
-            "description": "The current status of the Google Docs driver."
+            "description": "Status of the Google Docs driver."
           },
           {
             "name": "authId",
