@@ -146,7 +146,7 @@
               {
                 "name": "id",
                 "type": "String",
-                "description": "The document ID. Found in the URL after the 'document/d/' part"
+                "description": "The unique identifier of the document."
               }
             ],
             "description": "Retrieves a single document by its ID."
