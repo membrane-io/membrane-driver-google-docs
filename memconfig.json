@@ -41,7 +41,8 @@
               },
               {
                 "name": "value",
-                "type": "String"
+                "type": "String",
+                "description": "The value to parse for the document reference."
               }
             ],
             "description": "Interprets input to reference a specific Google Doc."
