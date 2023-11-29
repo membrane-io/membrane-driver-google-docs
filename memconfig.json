@@ -192,7 +192,7 @@
               },
               {
                 "name": "spaces",
-                "description": "Optional. The list of spaces to search. The default is 'drive'.",
+                "description": "The spaces to search within.",
                 "type": "String",
                 "optional": true
               },
