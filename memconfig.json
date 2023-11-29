@@ -242,7 +242,7 @@
             "name": "items",
             "type": "List",
             "ofType": "Document",
-            "description": "List of documents on the current page."
+            "description": "The documents contained on the current page."
           },
           {
             "name": "next",
