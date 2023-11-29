@@ -147,7 +147,7 @@
                 "description": "The document ID. Found in the URL after the 'document/d/' part"
               }
             ],
-            "description": "Fetches a single Google Doc by its unique identifier."
+            "description": "Retrieves a single document by its ID."
           },
           {
             "name": "page",
@@ -230,7 +230,8 @@
                 "type": "String",
                 "optional": true
               }
-            ]
+            ],
+            "description": "Retrieves a paginated list of Google Docs based on search criteria."
           }
         ]
       },
