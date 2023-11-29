@@ -217,7 +217,8 @@
               {
                 "name": "supportsTeamDrives",
                 "type": "Boolean",
-                "optional": true
+                "optional": true,
+                "description": "Whether to include items from team drives in the search."
               },
               {
                 "name": "includeItemsFromAllDrives",
