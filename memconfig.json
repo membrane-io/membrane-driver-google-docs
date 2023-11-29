@@ -21,7 +21,7 @@
           {
             "name": "documents",
             "type": "DocumentCollection",
-            "description": "Collection of documents available in Google Docs."
+            "description": "Collection of Google Docs documents."
           },
           {
             "name": "parse",
