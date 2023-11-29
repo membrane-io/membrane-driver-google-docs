@@ -21,7 +21,7 @@
           {
             "name": "documents",
             "type": "DocumentCollection",
-            "description": "Collection of Google Docs documents."
+            "description": "Manages the collection of Google Docs documents."
           },
           {
             "name": "parse",
