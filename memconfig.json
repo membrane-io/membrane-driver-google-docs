@@ -169,7 +169,7 @@
               },
               {
                 "name": "corpora",
-                "description": "Optional. The list of corpora to search. The default is 'user'.",
+                "description": "Corpora to include in the search.",
                 "type": "String",
                 "optional": true
               },
