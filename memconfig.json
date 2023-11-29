@@ -211,7 +211,8 @@
               {
                 "name": "supportsAllDrives",
                 "type": "Boolean",
-                "optional": true
+                "optional": true,
+                "description": "Whether to include items from all drives in the search."
               },
               {
                 "name": "supportsTeamDrives",
