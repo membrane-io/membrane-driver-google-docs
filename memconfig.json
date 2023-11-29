@@ -364,7 +364,8 @@
           },
           {
             "name": "body",
-            "type": "String"
+            "type": "String",
+            "description": "The body content of the document."
           },
           {
             "name": "markdown",
