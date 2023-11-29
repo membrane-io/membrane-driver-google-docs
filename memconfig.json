@@ -20,7 +20,8 @@
         "fields": [
           {
             "name": "documents",
-            "type": "DocumentCollection"
+            "type": "DocumentCollection",
+            "description": "Collection of documents available in Google Docs."
           },
           {
             "name": "parse",
