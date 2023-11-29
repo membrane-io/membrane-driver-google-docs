@@ -147,7 +147,7 @@
                 "description": "The document ID. Found in the URL after the 'document/d/' part"
               }
             ],
-            "description": "Retrieves a single document by its ID."
+            "description": "Fetches a single Google Doc by its unique identifier."
           },
           {
             "name": "page",
