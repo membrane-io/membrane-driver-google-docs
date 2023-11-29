@@ -164,7 +164,8 @@
               {
                 "name": "privateExtendedProperty",
                 "type": "String",
-                "optional": true
+                "optional": true,
+                "description": "Private properties of the document."
               },
               {
                 "name": "corpora",
