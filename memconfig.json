@@ -146,7 +146,8 @@
                 "type": "String",
                 "description": "The document ID. Found in the URL after the 'document/d/' part"
               }
-            ]
+            ],
+            "description": "Retrieves a single document by its ID."
           },
           {
             "name": "page",
