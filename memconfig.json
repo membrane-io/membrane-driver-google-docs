@@ -186,7 +186,7 @@
               },
               {
                 "name": "orderBy",
-                "description": "Optional. The order in which to sort the results. The default is 'modifiedTime desc'.",
+                "description": "The order to sort the search results.",
                 "type": "String",
                 "optional": true
               },
