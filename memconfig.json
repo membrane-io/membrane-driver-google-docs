@@ -377,7 +377,8 @@
             "type": "String",
             "hints": {
               "primary": true
-            }
+            },
+            "description": "The name of the document."
           }
         ]
       },
