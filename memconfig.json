@@ -382,7 +382,7 @@
             "hints": {
               "primary": true
             },
-            "description": "The name of the document."
+            "description": "The title of the Google Doc."
           }
         ]
       },
