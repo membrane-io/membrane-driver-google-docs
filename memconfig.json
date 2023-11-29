@@ -369,7 +369,7 @@
           {
             "name": "body",
             "type": "String",
-            "description": "The body content of the document."
+            "description": "The full body content of the Google Doc."
           },
           {
             "name": "markdown",
