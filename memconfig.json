@@ -176,12 +176,11 @@
               {
                 "name": "teamDriveId",
                 "type": "String",
-                "optional": true,
-                "description": "The ID of the team drive to search within."
+                "optional": true
               },
               {
                 "name": "driveId",
-                "description": "Optional. The ID of the shared drive to search.",
+                "description": "The ID of the shared drive to search.",
                 "type": "String",
                 "optional": true
               },
