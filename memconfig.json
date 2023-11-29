@@ -369,7 +369,8 @@
           },
           {
             "name": "markdown",
-            "type": "String"
+            "type": "String",
+            "description": "The markdown representation of the document."
           },
           {
             "name": "name",
