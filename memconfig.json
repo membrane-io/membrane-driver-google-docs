@@ -42,7 +42,8 @@
                 "name": "value",
                 "type": "String"
               }
-            ]
+            ],
+            "description": "Parses the provided name and value into a document reference."
           },
           {
             "name": "status",
