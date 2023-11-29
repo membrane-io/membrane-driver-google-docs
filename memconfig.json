@@ -359,7 +359,8 @@
         "fields": [
           {
             "name": "revisionId",
-            "type": "String"
+            "type": "String",
+            "description": "The revision ID of the document."
           },
           {
             "name": "body",
