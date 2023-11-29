@@ -217,13 +217,13 @@
               {
                 "name": "supportsTeamDrives",
                 "type": "Boolean",
-                "optional": true,
-                "description": "Whether to include items from team drives in the search."
+                "optional": true
               },
               {
                 "name": "includeItemsFromAllDrives",
                 "type": "Boolean",
-                "optional": true
+                "optional": true,
+                "description": "Whether to include items from all drives in the results."
               },
               {
                 "name": "includeLabels",
