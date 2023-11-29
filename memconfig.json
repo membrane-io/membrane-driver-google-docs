@@ -53,7 +53,7 @@
           {
             "name": "authId",
             "type": "String",
-            "description": "Auth ID for Google Docs API."
+            "description": "Authentication identifier for Google Docs API access."
           },
           {
             "name": "tests",
