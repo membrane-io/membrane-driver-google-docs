@@ -47,7 +47,8 @@
           },
           {
             "name": "status",
-            "type": "String"
+            "type": "String",
+            "description": "The current status of the Google Docs driver."
           },
           {
             "name": "authId",
