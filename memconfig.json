@@ -238,13 +238,13 @@
           {
             "name": "items",
             "type": "List",
-            "ofType": "Document",
-            "description": "List of documents on the current page."
+            "ofType": "Document"
           },
           {
             "name": "next",
             "type": "Ref",
-            "ofType": "DocumentPage"
+            "ofType": "DocumentPage",
+            "description": "Reference to the next page of documents."
           }
         ],
         "actions": [],
