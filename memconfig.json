@@ -374,7 +374,7 @@
           {
             "name": "markdown",
             "type": "String",
-            "description": "The markdown representation of the document."
+            "description": "Markdown formatted text of the Google Doc."
           },
           {
             "name": "name",
