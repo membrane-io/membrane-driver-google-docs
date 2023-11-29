@@ -43,7 +43,7 @@
                 "type": "String"
               }
             ],
-            "description": "Parses the provided name and value into a document reference."
+            "description": "Parses input into a document reference."
           },
           {
             "name": "status",
