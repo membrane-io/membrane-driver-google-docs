@@ -205,7 +205,7 @@
               {
                 "name": "pageToken",
                 "type": "String",
-                "description": "Optional. The page token as returned by the previous call to this method.",
+                "description": "The token for the next page of results.",
                 "optional": true
               },
               {
