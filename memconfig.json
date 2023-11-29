@@ -176,7 +176,8 @@
               {
                 "name": "teamDriveId",
                 "type": "String",
-                "optional": true
+                "optional": true,
+                "description": "The ID of the team drive to search within."
               },
               {
                 "name": "driveId",
