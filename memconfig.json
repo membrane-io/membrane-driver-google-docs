@@ -43,7 +43,7 @@
                 "type": "String"
               }
             ],
-            "description": "Parses input into a document reference."
+            "description": "Interprets input to reference a specific Google Doc."
           },
           {
             "name": "status",
