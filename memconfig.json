@@ -16,7 +16,7 @@
     "types": [
       {
         "name": "Root",
-        "description": "Access and manipulate Google Docs.",
+        "description": "Root type for Google Docs driver operations.",
         "fields": [
           {
             "name": "documents",
@@ -45,22 +45,22 @@
                 "description": "The value to parse for the document reference."
               }
             ],
-            "description": "Interprets input to reference a specific Google Doc."
+            "description": "Parses input to reference a specific Google Doc."
           },
           {
             "name": "status",
             "type": "String",
-            "description": "Status of the Google Docs driver."
+            "description": "Indicates the status of the Google Docs driver."
           },
           {
             "name": "authId",
             "type": "String",
-            "description": "Authentication identifier for Google Docs API access."
+            "description": "Authentication ID for Google Docs API."
           },
           {
             "name": "tests",
             "type": "Tests",
-            "description": "Test suite for verifying Google Docs driver functionality."
+            "description": "Provides a test suite for the Google Docs driver."
           }
         ],
         "actions": [
@@ -240,7 +240,8 @@
             ],
             "description": "Retrieves a paginated list of Google Docs based on search criteria."
           }
-        ]
+        ],
+        "description": "Manages collections of Google Docs documents."
       },
       {
         "name": "DocumentPage",
@@ -259,7 +260,8 @@
           }
         ],
         "actions": [],
-        "events": []
+        "events": [],
+        "description": "Represents a paginated list of Google Docs documents."
       },
       {
         "name": "Document",
@@ -391,7 +393,8 @@
             },
             "description": "The title of the Google Doc."
           }
-        ]
+        ],
+        "description": "Represents an individual Google Docs document."
       },
       {
         "name": "Tests",
@@ -404,7 +407,8 @@
             "name": "testGetAllDocuments",
             "type": "Boolean"
           }
-        ]
+        ],
+        "description": "Test suite for the Google Docs driver."
       }
     ]
   }
