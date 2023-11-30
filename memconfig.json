@@ -21,7 +21,7 @@
           {
             "name": "documents",
             "type": "DocumentCollection",
-            "description": "Manages the collection of Google Docs documents."
+            "description": "Configures the Google Docs driver with the provided client ID and client secret."
           },
           {
             "name": "parse",
@@ -45,12 +45,12 @@
                 "description": "The value to parse for the document reference."
               }
             ],
-            "description": "Parses input to reference a specific Google Doc."
+            "description": "Checks the status of the Google Docs driver."
           },
           {
             "name": "status",
             "type": "String",
-            "description": "Indicates the status of the Google Docs driver."
+            "description": "Invokes an endpoint with the specified method, path, body, query, and headers."
           },
           {
             "name": "authId",
@@ -149,7 +149,7 @@
                 "description": "The unique identifier of the document."
               }
             ],
-            "description": "Retrieves a single document by its ID."
+            "description": "Creates a new Google Docs document with the provided body and title."
           },
           {
             "name": "page",
@@ -373,17 +373,17 @@
           {
             "name": "revisionId",
             "type": "String",
-            "description": "The revision ID of the document."
+            "description": "Applies a list of updates to the Google Doc in a single batch."
           },
           {
             "name": "body",
             "type": "String",
-            "description": "The full body content of the Google Doc."
+            "description": "Replaces all occurrences of the specified text in the Google Doc."
           },
           {
             "name": "markdown",
             "type": "String",
-            "description": "Markdown formatted text of the Google Doc."
+            "description": "Inserts the specified text into the Google Doc at the specified location."
           },
           {
             "name": "name",
@@ -391,7 +391,7 @@
             "hints": {
               "primary": true
             },
-            "description": "The title of the Google Doc."
+            "description": "Inserts a bullet with the specified text into the Google Doc at the specified location."
           }
         ],
         "description": "Represents an individual Google Docs document."
